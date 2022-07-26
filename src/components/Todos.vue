@@ -14,7 +14,7 @@ import { ref } from 'vue'
 
 // import { v4 as uuidv4 } from 'uuid'
 import axios from 'axios'
-
+import api from '../api/apiServices.ts'
 import TodoItem from './TodoItem'
 import AddTodo from './AddTodo'
 
@@ -26,10 +26,12 @@ export default {
 
     const getAllTodos = async () => {
       try {
-        const res = await axios.get(
-          'https://jsonplaceholder.typicode.com/todos?_limit=5'
-        )
-        // console.log(res.data)
+        // const res = await axios.get(
+        //   'https://jsonplaceholder.typicode.com/todos?_limit=5'
+        // )
+
+      const res = await api.get('/todos')
+      console.log(res.data)
         todos.value = res.data
       } catch (error) {
         console.log(error)
